@@ -1,0 +1,64 @@
+# EditorConfig 設定檔
+root = true
+
+########################################
+# 全局通用設定 (適用於所有檔案)
+########################################
+[*]
+indent_style = space              # 使用空格縮排
+indent_size = 4                   # 預設縮排寬度為 4 個空格
+tab_width = 4                     # 設定 tab 縮排寬度為 4 個空格
+end_of_line = lf                  # 換行符設定為 LF
+charset = utf-8                   # 文件編碼為 UTF-8
+trim_trailing_whitespace = true   # 移除行尾多餘空格
+insert_final_newline = true       # 最後自動添加新行
+
+max_line_length = 120             # 全局最大行長限制
+curly_bracket_next_line = false   # 左大括號不另起一行
+space_around_operators = true     # 運算子周圍都有空格
+continuation_indent_size = 8      # 續行縮排為 8 個空格
+indent_brace_style = K&R          # 縮排風格    #1tbs
+
+########################################
+# Java... 檔案設定
+########################################
+[*.{java,kt,kts,groovy,gradle}]
+max_line_length = 180             # 行長可視需求調整
+# 若使用支援的 IDE，可透過 plugin 或 IDE 進一步擴充 Java 格式化規則
+
+########################################
+# HTML 檔案設定
+########################################
+[*.html]
+quote_type = double               # 引號使用雙引號，符合 HTML 規範
+
+########################################
+# CSS 檔案設定
+########################################
+[*.css]
+max_line_length = 100             # 根據需求調整，利於維護
+
+########################################
+# JavaScript 檔案設定
+########################################
+[*.js]
+quote_type = single               # 引號使用單引號，符合現代前端慣例
+
+########################################
+# 設定檔... 檔案設定
+########################################
+[*.{properties,cfg,conf,config,ini,yaml,yml}]
+trim_trailing_whitespace = false  # 部份 Properties 文件可能依賴尾部空格，故保留設定
+
+########################################
+# Markdown 檔案設定
+########################################
+[*.md]
+trim_trailing_whitespace = false  # Markdown 文件中，行尾空格有時會影響格式，故保留設定
+max_line_length = off
+
+########################################
+# json、xml 檔案設定
+########################################
+[{*.{json,xml}}]
+insert_final_newline = false
