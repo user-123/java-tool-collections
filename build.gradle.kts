@@ -159,19 +159,30 @@ dependencies {
     implementation("jakarta.validation:jakarta.validation-api:3.0.2")
     implementation("org.hibernate.validator:hibernate-validator:9.0.1.Final")
 
+    //jdbc
     runtimeOnly("com.mysql:mysql-connector-j:9.3.0")
 
+    //mapStruct
     compileOnly("org.mapstruct:mapstruct:$mapstructVersion")
     annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
 
+    //lombok
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")
 
+    //lombok-mapStruct-binding
     implementation("org.projectlombok:lombok-mapstruct-binding:$lombokMapstructBindingVersion")
 
     implementation("com.google.guava:guava:33.4.8-jre")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.13.4")
+
+    //log
+    testImplementation("org.apache.logging.log4j:log4j-core:2.24.3")
+    testImplementation("org.apache.logging.log4j:log4j-api:2.24.3")
+    testImplementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.24.3")
+    implementation("org.slf4j:slf4j-api:2.0.17")
+    testImplementation("org.slf4j:slf4j-api:2.0.17")
 }
 
 tasks.withType<Test> {
