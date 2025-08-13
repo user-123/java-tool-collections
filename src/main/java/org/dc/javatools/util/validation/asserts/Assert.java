@@ -9,6 +9,7 @@ public abstract class Assert {
         throw new IllegalStateException("Utility class");
     }
 
+    @SuppressWarnings("unchecked")
     public static <T extends Throwable> void isTrue(boolean expression, Class<T> exceptionClass, String message) throws T {
         if (expression) {
             return;
