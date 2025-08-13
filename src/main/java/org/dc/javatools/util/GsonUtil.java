@@ -7,15 +7,17 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializer;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 
 @Deprecated(forRemoval = true, since = "2025.08.14 03:38:13")
 public class GsonUtil {
-
     private static final Gson gson;
+
     static {
         gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDateTime.class, (JsonSerializer<LocalDateTime>) (src, typeOfSrc, context) -> new JsonPrimitive(src.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"))))
@@ -49,21 +51,62 @@ public class GsonUtil {
     }
 
     /**
-     * jsonStr to Map
+     * jsonStr to Map   (注意!!使用泛型會遇到型別擦除問題)
      * @param json String
      * @return Map<String, T>
      */
-    public static <T> Map<String, T> toMap(String json) {
-        return gson.fromJson(json, new TypeToken<Map<String, T>>(){}.getType());
+    public static Map<String, Object> toMap(String json) {
+        return toMap(json, new TypeToken<Map<String, Object>>(){}.getType());
     }
 
     /**
-     * Object to Map
+     * Object to Map   (注意!!使用泛型會遇到型別擦除問題)
      * @param object Object
      * @return Map Map
      */
-    public static <T> Map<String, T> objToMap(Object object) {
-        return gson.fromJson(gson.toJson(object), new TypeToken<Map<String, T>>(){}.getType());
+    public static Map<String, Object> objToMap(Object object) {
+        return toMap(gson.toJson(object));
+    }
+
+
+
+
+
+    public static <Po, K, V> Map<K, V> poToMap(Po po, Class<K> keyClass, Class<V> valueClass) {
+        return toMap(toJson(po), keyClass, valueClass);
+    }
+
+    /**
+     * json string to po list
+     * @param json string
+     * @param poClass
+     * @return List&lt;Po&gt;
+     */
+    public static <Po> List<Po> toList(String json, Class<Po> poClass) {
+        return toList(json, TypeToken.getParameterized(List.class, poClass).getType());
+    }
+
+    /**
+     * json string to map
+     * @param json
+     * @param keyClass
+     * @param valueClass
+     * @return Map&lt;K, V&gt;
+     */
+    public static <K, V> Map<K, V> toMap(String json, Class<K> keyClass, Class<V> valueClass) {
+        return toMap(json, TypeToken.getParameterized(Map.class, keyClass, valueClass).getType());
+    }
+
+    public static <Po> List<Po> toList(String json, Type listType) {
+        return toObject(json, listType);
+    }
+
+    public static <K, V> Map<K, V> toMap(String json, Type mapType) {
+        return toObject(json, mapType);
+    }
+
+    public static <T> T toObject(String json, Type type) {
+        return gson.fromJson(json, type);
     }
 
 }
