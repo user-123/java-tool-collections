@@ -166,6 +166,9 @@ dependencies {
     //sshd(sftp)
     implementation("org.apache.sshd:sshd-sftp:2.13.1")
 
+    //ftp
+    implementation("commons-net:commons-net:3.8.0")
+
     //jdbc
     runtimeOnly("com.mysql:mysql-connector-j:9.3.0")
 
