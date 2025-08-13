@@ -160,6 +160,7 @@ dependencies {
     implementation("jakarta.validation:jakarta.validation-api:3.0.2")
     implementation("org.hibernate.validator:hibernate-validator:9.0.1.Final")
     implementation("jakarta.annotation:jakarta.annotation-api:3.0.0")
+    implementation("jakarta.servlet:jakarta.servlet-api:6.1.0")
 
     //gson
     implementation("com.google.code.gson:gson:2.13.1")
