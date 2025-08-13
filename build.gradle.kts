@@ -156,8 +156,12 @@ dependencies {
     implementation("org.springframework:spring-context:$springVersion")
     implementation("org.springframework:spring-jdbc:$springVersion")
     implementation("org.springframework:spring-tx:$springVersion")
+    implementation("org.springframework:spring-web:$springVersion")
     implementation("jakarta.validation:jakarta.validation-api:3.0.2")
     implementation("org.hibernate.validator:hibernate-validator:9.0.1.Final")
+
+    //gson
+    implementation("com.google.code.gson:gson:2.13.1")
 
     //jdbc
     runtimeOnly("com.mysql:mysql-connector-j:9.3.0")
