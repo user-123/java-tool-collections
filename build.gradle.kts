@@ -163,6 +163,9 @@ dependencies {
     //gson
     implementation("com.google.code.gson:gson:2.13.1")
 
+    //sshd(sftp)
+    implementation("org.apache.sshd:sshd-sftp:2.13.1")
+
     //jdbc
     runtimeOnly("com.mysql:mysql-connector-j:9.3.0")
 
